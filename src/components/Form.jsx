@@ -12,7 +12,7 @@ const Form = () => {
 
   const [sourceWallet, setSourceWallet] = useState(options[0]);
   const [targetWallet, setTargetWallet] = useState("");
-  const [optionsSource, setOptionsSource] = useState(options);
+  const [optionsSource] = useState(options);
   const [optionsTarget, setOptionsTarget] = useState(options);
   const [defaultOption, setDefaultOption] = useState("Convert To");
 
@@ -36,7 +36,13 @@ const Form = () => {
     setTransactionSource(sourceWallet);
 
     if (targetWallet) setTransactionDestination(targetWallet);
-  }, [optionsTarget, targetWallet]);
+  }, [
+    optionsTarget,
+    targetWallet,
+    setTransactionDestination,
+    setTransactionSource,
+    sourceWallet,
+  ]);
 
   // Selection panel
   const handleChange = (e) => {

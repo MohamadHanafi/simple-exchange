@@ -9,7 +9,7 @@ const WalletInfoContextProvider = ({ children }) => {
   });
 
   return (
-    <WalletInfoContext.Provider value={{ wallet }}>
+    <WalletInfoContext.Provider value={{ wallet, setWallet }}>
       {children}
     </WalletInfoContext.Provider>
   );
