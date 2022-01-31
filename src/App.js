@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import Form from "./components/Form";
+import Info from "./components/Info";
+import { Container } from "./components/styles/Container.styled";
+import GlobalStyle from "./components/styles/Global";
+
+// context
+import WalletInfoProvider from "./context/WalletInfoContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <Container direction="column" padding="0 20px" gap="10px" main={true}>
+        <h4>Convert from one to another currency</h4>
+        <Container direction="row" padding="0" wrap gap="20px">
+          <WalletInfoProvider>
+            <Form />
+            <Info />
+          </WalletInfoProvider>
+        </Container>
+      </Container>
+    </>
   );
 }
 
