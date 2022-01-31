@@ -5,6 +5,7 @@ import GlobalStyle from "./components/styles/Global";
 
 // context
 import WalletInfoProvider from "./context/WalletInfoContext";
+import TransactionInfoContextProvider from "./context/TransactionInofContext";
 
 function App() {
   return (
@@ -14,8 +15,10 @@ function App() {
         <h4>Convert from one to another currency</h4>
         <Container direction="row" padding="0" wrap gap="20px">
           <WalletInfoProvider>
-            <Form />
-            <Info />
+            <TransactionInfoContextProvider>
+              <Form />
+              <Info />
+            </TransactionInfoContextProvider>
           </WalletInfoProvider>
         </Container>
       </Container>

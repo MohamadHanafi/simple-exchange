@@ -19,4 +19,8 @@ export const StyledInfo = styled.div`
     border-bottom: 2px solid #fff;
     border-radius: 50%;
   }
+
+  .small {
+    font-size: 10px;
+  }
 `;

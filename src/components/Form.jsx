@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SelectionPanel from "./SelectionPanel";
 import { StyledForm } from "./styles/Form.styled";
+
+import { TransactionInfoContext } from "../context/TransactionInofContext";
 
 // To reset the timer
 let timer;
@@ -8,29 +10,40 @@ let timer;
 const Form = () => {
   const options = ["USD", "EUR"];
 
-  const [source, setSource] = useState("");
-  const [destination, setDestination] = useState("");
-
   const [sourceWallet, setSourceWallet] = useState(options[0]);
   const [targetWallet, setTargetWallet] = useState("");
-
   const [optionsSource, setOptionsSource] = useState(options);
   const [optionsTarget, setOptionsTarget] = useState(options);
-
   const [defaultOption, setDefaultOption] = useState("Convert To");
-  const [rate, setRate] = useState(0);
+
+  const {
+    rate,
+    setRate,
+    source,
+    setSource,
+    destination,
+    setDestination,
+    setTransactionSource,
+    setTransactionDestination,
+  } = useContext(TransactionInfoContext);
 
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (optionsTarget.length === 1) setTargetWallet(optionsTarget[0]);
-  }, [optionsTarget]);
+
+    // set TransactionSource for the context
+    setTransactionSource(sourceWallet);
+
+    if (targetWallet) setTransactionDestination(targetWallet);
+  }, [optionsTarget, targetWallet]);
 
   // Selection panel
   const handleChange = (e) => {
     const wallet = e.target.name;
     if (wallet === "sourceWallet") {
       setSourceWallet(e.target.value);
+      setTransactionSource(e.target.value);
       setOptionsTarget(options.filter((option) => option !== e.target.value));
     } else if (wallet === "targetWallet") {
       setTargetWallet(e.target.value);
@@ -39,7 +52,6 @@ const Form = () => {
   };
 
   // Input
-
   const handleInputChange = (input, amount, from, to) => {
     let key = "7f59fbb540db633fdba4bac6";
 

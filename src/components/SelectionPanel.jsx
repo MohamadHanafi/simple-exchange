@@ -37,6 +37,9 @@ const SelectionPanel = ({ name, options, value, defaultOption, onChange }) => {
 SelectionPanel.propTypes = {
   name: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
+  value: PropTypes.string.isRequired,
+  defaultOption: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default SelectionPanel;
